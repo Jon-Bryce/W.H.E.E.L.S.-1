@@ -4,6 +4,7 @@
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TimelineBuilder;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
@@ -12,8 +13,17 @@ import javafx.util.Duration;
 public class Main
 {
 
-	public static void main(String[] args)
+	public Main(App scene)
 	{
+		
+		ObjectList objects = new ObjectList(2, scene);
+		
+		objects.addCar();
+		objects.addCar();
+		
+		
+		
+		
 		Timeline tick = TimelineBuilder.create()
 				.keyFrames
 				(
@@ -26,6 +36,7 @@ public class Main
 							public void handle(ActionEvent event)
 							{
 								//Put code to run every tick in here.
+								objects.tick();
 							}
 						}
 					)
