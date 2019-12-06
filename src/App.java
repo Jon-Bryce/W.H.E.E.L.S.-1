@@ -29,9 +29,14 @@ public class App extends Application
 		
 		root = new Group();
 		
-		scene = new Scene(root, 600 ,400);
+		scene = new Scene(root, 1200, 800);
 		
-		root.getChildren().add(new Rectangle(100,100,100,100));
+		root.getChildren().add(new Rectangle(000, 300, 1200, 300));
+		Rectangle r = new Rectangle(100, 50, Color.GREY);
+		r.setX(100);
+		r.setY(350);
+		root.getChildren().add(r);
+		
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
