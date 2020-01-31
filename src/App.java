@@ -15,7 +15,7 @@ public class App extends Application
 	Scene scene;
 	Group root;
 	
-	private Main ticker;
+	private Tick ticker;
 	
 	public static void main(String[] args) 
 	{
@@ -25,17 +25,17 @@ public class App extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception 
 	{
-		ticker = new Main(this);
-		
+		ObjectList objects = new ObjectList(20, this);
 		root = new Group();
 		
 		scene = new Scene(root, 1200, 800);
 		
-		root.getChildren().add(new Rectangle(000, 300, 1200, 300));
-		Rectangle r = new Rectangle(100, 50, Color.GREY);
-		r.setX(100);
-		r.setY(350);
-		root.getChildren().add(r);
+		ticker = new Tick(objects);
+		ticker.start();
+		objects.addCar();
+		objects.addCar();
+		
+		//root.getChildren().add(new Rectangle(000, 300, 1200, 300));
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -50,9 +50,9 @@ public class App extends Application
 	public void spawn()
 	{
 		String key = "car" + numCars;
-		Rectangle newCar = new Rectangle(100, 100, 100, 100);
+		Rectangle newCar = new Rectangle(100, 350, 100, 50);
 		newCar.setFill(Color.BLUE);
-		//root.getChildren().add(newCar);
+		root.getChildren().add(newCar);
 		cars.put(key, newCar);
 		numCars++;
 	}

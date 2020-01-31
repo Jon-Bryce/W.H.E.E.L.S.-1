@@ -1,5 +1,5 @@
-//import java.net.URL;
-//import java.util.ResourceBundle;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -36,7 +36,8 @@ public class Main
 							public void handle(ActionEvent event)
 							{
 								//Put code to run every tick in here.
-								objects.tick();
+								objects.tick(54564543);
+								System.out.println("5");
 							}
 						}
 					)
