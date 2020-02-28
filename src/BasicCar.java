@@ -3,7 +3,7 @@ public class BasicCar
 {
 	private float speed, maxSpeed, locationRunoff;
 	private int aggressivness, awareness;
-	public int x, lane, wrap;
+	public int x, lane, wrap, printx;
 	ObjectList objects;
 	
 	public BasicCar (float fastness, ObjectList objectList, int Lane)
@@ -19,13 +19,21 @@ public class BasicCar
 	public void calculate()
 	{
 		float speedChange = 0;
-		if (objects.colliderCheck(x + 70, x + 1100, lane, wrap))
+		//front check
+		if (objects.colliderCheck(x + 70, x + 1200, lane))
 		{
-			speedChange -= 1.5;
+			int otherLane = (lane == 1) ? 2 : 1;
+			if (!objects.colliderCheck(x - 500, x + 1600, otherLane)) {
+				this.lane = otherLane;
+			}
+			else
+			{
+				speedChange -= .6;
+			}
 		}
 		else
 		{
-			speedChange += 1.2;
+			speedChange += .4;
 		}
 		
 		speed += speedChange;
@@ -40,15 +48,17 @@ public class BasicCar
 		}
 		x+= speed;
 		
-		if (x > 13000)
+		printx = x % 10000;
+		
+		if (printx < 50)
 		{
 			wrap +=1;
-			x = -100;
+			x += 20;
 		}
 		
 		int y = (wrap * 200) + (lane * 50);
 		
-		return (x/10) + (y*1000);
+		return (printx/10) + (y*1000);
 	}
 	
 	public int tick()

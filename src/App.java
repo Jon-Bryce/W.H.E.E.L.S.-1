@@ -25,7 +25,7 @@ public class App extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception 
 	{
-		ObjectList objects = new ObjectList(80, this);
+		ObjectList objects = new ObjectList(90, this);
 		root = new Group();
 		
 		scene = new Scene(root, 1200, 800);

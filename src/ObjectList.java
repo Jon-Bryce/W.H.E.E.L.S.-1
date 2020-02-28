@@ -18,7 +18,7 @@ public class ObjectList
 		if(end != maxSize) {
 			int lane = ((Math.random() * 2) > 1) ? 1 : 2;
 			cars[end] = new BasicCar(speed, this, lane);
-			speed += .1f;
+			speed = (float)(Math.random() * 2) + 2f;
 			end++;
 			stage.spawn(lane);
 		}
@@ -26,7 +26,7 @@ public class ObjectList
 	
 	public void tick(long frame)
 	{
-		if (frame % 30 == 0) {
+		if (frame % 35 == 0) {
 			this.addCar();
 		}
 		for(int i=0; i<end; i++)
@@ -34,18 +34,17 @@ public class ObjectList
 			int loc = cars[i].tick();
 			int x = loc % 1000;
 			int y = loc / 1000;
-			System.out.println(x + " " + y);
 			stage.update(i,x,y);
 		}
 	}
 	
-	public boolean colliderCheck(int xIn, int xOut, int lane, int wrap) 
+	public boolean colliderCheck(int xIn, int xOut, int lane) 
 	{
 		boolean carFound = false;
 		for (int i = 0; i < end; i++) 
 		{
 			BasicCar car = cars[i];
-			if ((car.x > xIn && car.x < xOut) && car.lane == lane && car.wrap == wrap)
+			if ((car.x > xIn && car.x < xOut) && car.lane == lane)
 			{
 				carFound = true;
 			}
